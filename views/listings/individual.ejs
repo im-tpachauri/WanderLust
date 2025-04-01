@@ -1,0 +1,74 @@
+<% layout("/layouts/boilerplate")%>
+
+
+  <body>
+
+    <div class="col-8 offset-3">
+      <h2>
+        <%=element.title%>
+      </h2>
+      <div class="card" ">
+        <img src=" <%=element.image.url%>" class="card-img-top show-img" alt="listing_image" >
+        <div class="card-body">
+          <h5 class="card-text"></h5>
+          <p><b>Description:</b>
+            <%=element.description%>
+          </p>
+          <li><b>Country:</b>
+            <%=element.country%>
+          </li>
+          <li><b>Price:</b>&#8377;<%=element.price.toLocaleString("en-IN")%></li>
+          <li><b>Location:</b>
+            <%=element.location%>
+          </li>
+        </div>
+        <br><br>
+        <a href="/listings/<%=element._id%>/edit"><button class="btn btn-dark add-btn">Edit</button></a>
+        <br><br>
+        <form method="post" action="/listings/<%=element._id%>?_method=DELETE">
+          <button class="btn btn-dark add-btn">DELETE</button>
+        </form>
+      </div>
+    </div>
+
+
+    <div class=" mb-3 mt-3 col-8 offset-3">
+      <h3>Leave a review</h3>
+      <form action="/listings/<%=element._id%>/reviews" method="post" novalidate class="needs-validation">
+        <div class=" mb-3 mt-3">
+          <label for="rating" class="form-label">Rating</label>
+          <input type="range" min="1" max="5" name="review[rating]" id="rating" class="form-range">
+        </div>
+        <div class=" mb-3 mt-3">
+          <label for="comment" class="form-label">Comments</label>
+          <textarea class="form-control" name="review[comment]" id="comment" cols="30" rows="4" required></textarea>
+          <div class="invalid-feedback">Please add some comments!!</div>
+
+        </div>
+        <button class="btn btn-dark">Submit</button>
+      </form>
+      <hr>
+
+
+      <p><b>All Reviews</b></p>
+
+
+    
+        <% for(review of element.reviews )
+        {%>
+          <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <h6 class="card-subtitle mb-2 text-body-secondary"><b>Rating:</b><%=review.rating%></h6>
+              <p class="card-text"><%=review.comment%></p>
+            </div>
+          </div>
+        <!-- <li><%=review.comment%>,<%=review.rating%></li> -->
+       <%}%>
+      
+
+    </div>
+    </div>
+
+
+  </body>

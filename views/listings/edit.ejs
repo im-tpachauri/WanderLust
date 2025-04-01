@@ -1,0 +1,54 @@
+<% layout("/layouts/boilerplate")%>
+
+<body>
+    <h3>Edit Listing</h3>
+
+    <form method="post" class="needs-validation" novalidate action="/listings/<%=element._id%>?_method=PUT">
+    
+        <div class="col-8 offset-2">
+            <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <input name="listing[title]" value="<%=element.title%>" type="text" class="form-control" required >
+                <div class="valid-feedback">Title looks good</div>
+
+            </div>
+
+            <div class="mb-3 col">
+                <label for="description" class="form-label">Description</label>
+                <textarea class="form-control" name="listing[description]" required><%=element.description%></textarea>
+                <div class="invalid-feedback">Enter a description.</div>
+
+            </div>
+
+            <div class="mb-3">
+                <label for="image" class="form-label">Image link</label>
+                <input class="form-control" name="listing[image.url]" value="<%=element.image.url%>" type="text" required>
+            </div>
+            <div class="row">
+                <div class="mb-3 col-md-4 ">
+                    <label for="price" class="form-label">Price</label>
+                    <input class="form-control" name="listing[price]" value="<%=element.price%>"  required>
+                    <div class="invalid-feedback">Please enter a valid price.</div>
+
+                </div>
+
+                <div class="mb-3 col-md-8">
+                    <label for="country" class="form-label">Country</label>
+                    <input  class="form-control"name="listing[country]" value="<%=element.country%>" type="text" required>
+                    <div class="invalid-feedback">Please enter a valid country.</div>
+
+                </div>
+            </div>  
+
+            <div class="mb-3">
+                <label for="location" class="form-label">Location</label>
+                <input class="form-control" name="listing[location]" value="<%=element.location%>" type="text" required>
+                <div class="invalid-feedback">Please enter a valid location.</div>
+
+            </div>
+    </div>
+<!-- </div> -->
+ 
+    <button class="btn btn-dark add-btn">Save changes</button>
+</form>
+</body>
