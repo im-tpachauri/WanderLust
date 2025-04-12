@@ -7,8 +7,10 @@
       <h2>
         <%=element.title%>
       </h2>
-      <div class="card" ">
-        <img src=" <%=element.image.url%>" class="card-img-top show-img" alt="listing_image" >
+      <div class="card listing-card" ">
+        <img src="<%= element.image.url %>" class="card-img-top show-img" alt="listing_image" style="height: 300px; object-fit: cover;">
+
+        <!-- <img src=" <%=element.image.url%>" class="card-img-top show-img" alt="listing_image" > -->
         <div class="card-body">
           <h5 class="card-text"></h5>
           <p><b>Description:</b>
@@ -51,21 +53,26 @@
 
 
       <p><b>All Reviews</b></p>
+      <div class="row">
+        <% for(review of element.reviews ) {%>
 
-
-    
-        <% for(review of element.reviews )
-        {%>
-          <div class="card" style="width: 18rem;">
+          <div class="card  ms-3 col-5 mb-3">
             <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <h6 class="card-subtitle mb-2 text-body-secondary"><b>Rating:</b><%=review.rating%></h6>
-              <p class="card-text"><%=review.comment%></p>
+              <h5 class="card-title">Tapan Pachauri</h5>
+              <p class="card-text"><b>Rating:</b>
+                <%=review.rating%>
+              </p>
+              <p class="card-text"><b>Comments:</b>
+                <%=review.comment%>
+              </p>
+              <form class="mb-3" action="/listings/<%= element._id %>/reviews/<%= review._id %>?_method=DELETE" method="POST">
+                <button class="btn btn-sm btn-dark">Delete</button>
+              </form>
             </div>
           </div>
-        <!-- <li><%=review.comment%>,<%=review.rating%></li> -->
-       <%}%>
-      
+          <%}%>
+      </div>
+
 
     </div>
     </div>
