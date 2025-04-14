@@ -28,6 +28,7 @@ main()
     .catch(err => console.log(err));
 
 async function main() {
+    console.log("fsf");
     await mongoose.connect('mongodb://127.0.0.1:27017/wanderlust');
 }
 
@@ -42,7 +43,10 @@ app.use("/listings/:id/reviews",reviews);//review route
 
 //error handeling
 app.all("*",(req,res,next)=>{
+    
     next(new ExpressError(404,"Page not found"));
+
+
 });
 
 
